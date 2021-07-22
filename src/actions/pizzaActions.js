@@ -1,0 +1,49 @@
+import axios from "axios";
+export const getAllPizzas=()=> async dispatch=>{
+
+    dispatch({type:'GET_PIZZAS_REQUEST'})
+    try {
+        const response = await axios.get('/api/pizzas/getallpizzas')
+        console.log(response);
+        dispatch({type:'GET_PIZZAS_SUCCESS', payload : response.data})
+    } catch(error){
+        dispatch({type:'GET_PIZZAS_FAILED',payload : error})
+
+    }
+
+}
+
+export const fliterPizzas=(searchkey,category)=> async dispatch=>{
+    var fliterPizzas;
+    dispatch({type:'GET_PIZZAS_REQUEST'})
+    try {
+        const response = await axios.get('/api/pizzas/getallpizzas')
+        console.log(response);
+        fliterPizzas=response.data.filter(pizza=>pizza.name.toLowerCase().includes(searchkey))
+        if(category!='all')
+        {
+            fliterPizzas=response.data.filter(pizza=>pizza.category.toLowerCase()==category)     
+        }
+        dispatch({type:'GET_PIZZAS_SUCCESS', payload : fliterPizzas})
+    } catch(error){
+        dispatch({type:'GET_PIZZAS_FAILED',payload : error})
+
+    }
+
+}
+
+export const addPizza=(pizza)=> async dispatch=>{
+
+    dispatch({type:'ADD_PIZZA_REQUEST'})
+    try {
+        console.log(pizza);
+        
+        const response = await axios.post('/api/pizzas/addpizza', {pizza})
+        console.log(response);
+        dispatch({type:'ADD_PIZZA_SUCCESS', payload : response.data})
+    } catch(error){
+        console.log("Error add  pizza :- "+error);
+        
+        dispatch({type:'ADD_PIZZA_FAILED',payload : error})
+    }
+}
