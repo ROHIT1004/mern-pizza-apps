@@ -25,3 +25,34 @@ export const loginUser=(user)=>async dispatch=>{
         dispatch({type:'USER_LOGIN_FAILED', payload: error})
     }
 }
+export const logoutUser=()=>dispatch=>{
+    localStorage.removeItem('currentUser')
+    window.loaction.href='/login'
+}
+
+export const getAllUsers=()=> async dispatch=>{
+
+    dispatch({type:'GET_USERS_REQUEST'})
+    try {
+        const response = await axios.get('/api/users/getallusers')
+        console.log(response);
+        dispatch({type:'GET_USERS_SUCCESS', payload : response.data})
+    } catch(error){
+        dispatch({type:'GET_USERS_FAILED',payload : error})
+
+    }
+
+}
+
+export const deleteUsers=(userid)=>async dispatch=>{
+    dispatch({type:'USER_DELETE_REQUEST'})
+    try {
+        const response = await axios.post('/api/users/deleteuser', {userid})
+        console.log(response);
+        dispatch({type:'USER_DELETE_SUCCESS' , payload: response.data})
+        //localStorage.setItem('currentUser' , JSON.stringify(response.data))
+        //window.location.href='/'
+    } catch (error) {
+        dispatch({type:'USER_DELETE_FAILED', payload: error})
+    }
+}

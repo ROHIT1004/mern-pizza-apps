@@ -36,4 +36,45 @@ export const addPizzaReducer = (state={}, action) =>{
         }
         default : return state
     }
-};
+}
+
+export const getPizzaByIdReducer = (state={ }, action) =>{
+
+    switch(action.type)
+    {
+        case 'GET_PIZZABYID_REQEUST' : return {
+            loading : true,
+            ...state
+        }
+        case 'GET_PIZZABYID_SUCCESS' : return {
+            loading: false,
+            pizzas: action.payload
+        }
+        case 'GET_PIZZABYID _FAILED' : return {
+            error: action.payload,
+            loading: false,
+        }
+        default : return state
+    }
+}
+
+
+export const editPizzaReducer = (state={}, action) =>{
+
+    switch(action.type)
+    {
+        case 'EDIT_PIZZA_REQEUST' : return {
+            editloading : true,
+            ...state
+        }
+        case 'EDIT_PIZZA_SUCCESS' : return {
+            editloading: false,
+            editsuccess: true,
+        }
+        case 'EDIT_PIZZA_FAILED' : return {
+            editerror: action.payload,
+            editloading: false,
+        }
+        default : return state
+    }
+}

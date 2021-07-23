@@ -5,11 +5,10 @@ import {createStore , applyMiddleware,middleware} from 'redux';
 import thunk from 'redux-thunk';
 
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {getAllPizzasReducer,addPizzaReducer} from './reducers/pizzaReducers'
+import {getAllPizzasReducer,addPizzaReducer,getPizzaByIdReducer,editPizzaReducer} from './reducers/pizzaReducers'
 import { cartReducer } from './reducers/cartReducer'
-import { registerUserReducer } from './reducers/userReducer';
-import { loginUserReducer } from './reducers/userReducer';
-import {placeOrderReducer ,getUserOrdersReducer} from './reducers/orderReducer';
+import { loginUserReducer,registerUserReducer ,getAllUsersReducer} from './reducers/userReducer';
+import {placeOrderReducer ,getUserOrdersReducer,getAllOrdersReducer} from './reducers/orderReducer';
 
 const finalReducers = combineReducers({
     getAllPizzasReducer : getAllPizzasReducer,
@@ -18,7 +17,11 @@ const finalReducers = combineReducers({
     loginUserReducer: loginUserReducer,
     placeOrderReducer: placeOrderReducer,
     getUserOrdersReducer:getUserOrdersReducer,
-    addPizzaReducer:addPizzaReducer
+    addPizzaReducer:addPizzaReducer,
+    getPizzaByIdReducer:getPizzaByIdReducer,
+    editPizzaReducer:editPizzaReducer,
+    getAllOrdersReducer:getAllOrdersReducer,
+    getAllUsersReducer:getAllUsersReducer
 })
 
 const cartItems = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []

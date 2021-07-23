@@ -28,11 +28,11 @@ export default function Adminscreen() {
               <div className="row justify-content-center">
                 <div className="col-md-10">
                     <Switch>
-                        <Route exact path={'${path}/userslist'}  component={ Userslist }/>
-                        <Route exact path={'${path}/pizzaslist'} component={ Pizzaslist } />
-                        <Route exact path={'${path}/addpizza'} component={ Addpizza } />
-                        <Route exact path={'${path}/orderslist'} component={ Orderslist } />
-                        <Route exact path={'${path}/editpizza/:pizzaid'} component={ Editpizza } />
+                        <Route exact path={`${path}/userslist`}  component={ Userslist }/>
+                        <Route exact path={`${path}/pizzaslist`} component={ Pizzaslist } />
+                        <Route exact path={`${path}/addpizza`} component={ Addpizza } />
+                        <Route exact path={`${path}/orderslist`} component={ Orderslist } />
+                        <Route exact path={`${path}/editpizza/:pizzaid`} component={ Editpizza } />
                     </Switch>      
                </div>
             </div>

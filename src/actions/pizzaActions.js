@@ -47,3 +47,47 @@ export const addPizza=(pizza)=> async dispatch=>{
         dispatch({type:'ADD_PIZZA_FAILED',payload : error})
     }
 }
+
+export const getPizzaById=(pizzaid)=> async dispatch=>{
+
+    dispatch({type:'GET_PIZZABYID_REQUEST'})
+    try {
+        const response = await axios.post('/api/pizzas/getpizzabyid' , {pizzaid})
+        console.log(response);
+        dispatch({type:'GET_PIZZABYID_SUCCESS', payload : response.data})
+    } catch(error){
+        dispatch({type:'GET_PIZZABYID_FAILED',payload : error})
+
+    }
+
+}
+
+
+export const editPizza=(editpizza)=> async dispatch=>{
+
+    dispatch({type:'EDIT_PIZZA_REQUEST'})
+    try {
+        console.log(editpizza);
+        
+        const response = await axios.post('/api/pizzas/editpizza', {editpizza})
+        console.log(response);
+        dispatch({type:'EDIT_PIZZA_SUCCESS', payload : response.data})
+    } catch(error){
+        console.log("Error EDIT  pizza :- "+error);
+        
+        dispatch({type:'EDIT_PIZZA_FAILED',payload : error})
+    }
+}
+
+export const deletePizza=(pizzaid)=> async dispatch =>{
+
+try {
+    ///console.log(pizzaid);
+    const response = await axios.post('/api/pizzas/deletepizza', {pizzaid})
+    console.log(response)
+    window.location.reload()
+} catch (error) {
+    alert("Pizza deleted failed somithg we nt worng")
+    console.log("Error in deleting  pizza :- "+error)
+    }
+}

@@ -9,7 +9,7 @@ export default function Ordersscreen() {
 
     const dispatch = useDispatch()
     const orderstate  = useSelector(state => state.getUserOrdersReducer)
-    const {pizzas,loading, error } = orderstate
+    const {orders,loading, error } = orderstate
   
     useEffect(() => {
         dispatch(getUserOrders())
@@ -23,7 +23,7 @@ export default function Ordersscreen() {
             <div className="row  justify-content-center" >
             {loading && (<Loading/>) }
             {error && (<Error error="somthing went worng" />) }
-            {pizzas && pizzas.map(order =>{
+            {orders && orders.map(order =>{
                 return <div className="col-md-8 m-2 p-1">
                         <div className="flex-container "style={{backgroundColor:'red',color:'white'}}>
                         <div className=" w-100 m-1" style={{textAlign: 'left'}}>
